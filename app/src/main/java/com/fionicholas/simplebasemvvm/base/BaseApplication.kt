@@ -10,14 +10,7 @@ abstract class BaseApplication : Application(){
 
     override fun onCreate() {
         super.onCreate()
-
         ContextProvider.initialize(applicationContext)
-
-        startKoin{
-            androidContext(this@BaseApplication)
-            modules(getDefinedModules())
-        }
     }
 
-    abstract fun getDefinedModules(): List<Module>
 }

@@ -1,10 +1,8 @@
 package com.fionicholas.simplebasemvvm.data.movie
 
-import com.fionicholas.simplebasemvvm.utils.OperationCallback
+import com.fionicholas.simplebasemvvm.data.movie.remote.response.MovieResponse
+import io.reactivex.Flowable
 
 interface MovieDataSource {
-
-    fun retrieveMovie(callback: OperationCallback)
-    fun cancel()
-
+    fun getPopularMovie(): Flowable<MovieResponse>
 }

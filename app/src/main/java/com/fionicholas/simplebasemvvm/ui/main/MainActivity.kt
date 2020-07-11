@@ -5,8 +5,10 @@ import android.os.Bundle
 import com.fionicholas.simplebasemvvm.R
 import com.fionicholas.simplebasemvvm.ui.movie.MovieFragment
 import com.fionicholas.simplebasemvvm.utils.replaceFragment
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

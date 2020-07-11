@@ -1,13 +1,6 @@
 package com.fionicholas.simplebasemvvm.base
 
-import com.fionicholas.simplebasemvvm.di.movieModule
-import org.koin.core.module.Module
+import dagger.hilt.android.HiltAndroidApp
 
-class MainApplication : BaseApplication() {
-
-    override fun getDefinedModules(): List<Module> {
-        return listOf(
-            movieModule
-        )
-    }
-}
+@HiltAndroidApp
+class MainApplication : BaseApplication()

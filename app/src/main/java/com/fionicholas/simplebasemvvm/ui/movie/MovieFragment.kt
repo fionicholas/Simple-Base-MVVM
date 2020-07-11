@@ -6,13 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fionicholas.simplebasemvvm.R
 import com.fionicholas.simplebasemvvm.data.movie.remote.response.Movie
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_movie.*
-import org.koin.android.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class MovieFragment : Fragment() {
 
     companion object {
@@ -30,7 +32,7 @@ class MovieFragment : Fragment() {
         }
     }
 
-    private val viewModel: MovieViewModel by viewModel()
+    private val viewModel: MovieViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,10 +57,9 @@ class MovieFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel.movies.observe(this, renderMovies)
-        viewModel.isViewLoading.observe(this, isViewLoadingObserver)
-        viewModel.onMessageError.observe(this, onMessageErrorObserver)
-        viewModel.isEmptyList.observe(this, emptyListObserver)
+        viewModel.movies.observe(viewLifecycleOwner, renderMovies)
+        viewModel.isViewLoading.observe(viewLifecycleOwner, isViewLoadingObserver)
+        viewModel.onMessageError.observe(viewLifecycleOwner, onMessageErrorObserver)
     }
 
 
@@ -77,10 +78,6 @@ class MovieFragment : Fragment() {
     private val onMessageErrorObserver = Observer<Any> {
         Log.v("TAG", "onMessageError $it")
 
-    }
-
-    private val emptyListObserver = Observer<Boolean> {
-        Log.v("TAG", "emptyListObserver $it")
     }
 
 }
