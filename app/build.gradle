@@ -27,7 +27,7 @@ android {
     buildTypes.each {
         it.buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
         it.buildConfigField 'String', 'URL_POSTER', '"https://image.tmdb.org/t/p/w342"'
-        it.buildConfigField 'String', 'API_KEY', '"1b5c4f231f6dfe2b546cc12df8af1949"'
+        it.buildConfigField 'String', 'API_KEY', '"PASTE YOUR API KEY HERE"'
     }
 
 
@@ -62,12 +62,19 @@ dependencies {
     implementation "com.google.code.gson:gson:2.8.6"
     implementation "com.squareup.retrofit2:converter-gson:2.7.1"
     implementation "com.squareup.okhttp3:logging-interceptor:4.4.0"
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.7.1'
 
     //dependency injection
     implementation 'org.koin:koin-android:2.0.1'
     implementation 'org.koin:koin-android-viewmodel:2.0.1'
 
     //rxjava
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.10'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
+    implementation "io.reactivex.rxjava2:rxjava:2.2.16"
+
+    implementation "androidx.fragment:fragment-ktx:1.2.5"
+
+    implementation 'com.android.support:multidex:1.0.3'
 
 }

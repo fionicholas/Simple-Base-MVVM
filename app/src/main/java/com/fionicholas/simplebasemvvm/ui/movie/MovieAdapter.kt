@@ -7,16 +7,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.fionicholas.simplebasemvvm.BuildConfig.URL_POSTER
 import com.fionicholas.simplebasemvvm.R
-import com.fionicholas.simplebasemvvm.data.movie.remote.response.Movie
+import com.fionicholas.simplebasemvvm.data.movie.remote.response.MovieItem
 import kotlinx.android.synthetic.main.items_movie.view.*
 import java.util.*
 
 class MovieAdapter(
-    val listener: ((movie: Movie) -> Unit)?
+    val listener: ((movie: MovieItem) -> Unit)?
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
-    private var listMovies = ArrayList<Movie>()
+    private var listMovies = ArrayList<MovieItem>()
 
-    fun setMovies(tvshows: List<Movie>?) {
+    fun setMovies(tvshows: List<MovieItem>?) {
         if (tvshows == null) return
         this.listMovies.clear()
         this.listMovies.addAll(tvshows)
@@ -39,7 +39,7 @@ class MovieAdapter(
     override fun getItemCount(): Int = listMovies.size
 
     inner class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(data: Movie) {
+        fun bind(data: MovieItem) {
             with(itemView) {
                 tv_title.text = data.title
                 tv_vote.text = data.vote_average.toString()

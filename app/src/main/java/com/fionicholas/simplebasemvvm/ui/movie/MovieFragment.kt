@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.fionicholas.simplebasemvvm.R
-import com.fionicholas.simplebasemvvm.data.movie.remote.response.Movie
+import com.fionicholas.simplebasemvvm.data.movie.remote.response.MovieItem
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -26,7 +26,7 @@ class MovieFragment : Fragment() {
 
     private val movieAdapter: MovieAdapter by lazy {
         MovieAdapter {
-
+            //handle listener to detail movie
         }
     }
 
@@ -55,16 +55,14 @@ class MovieFragment : Fragment() {
     }
 
     private fun setupViewModel() {
-        viewModel.movies.observe(this, renderMovies)
-        viewModel.isViewLoading.observe(this, isViewLoadingObserver)
-        viewModel.onMessageError.observe(this, onMessageErrorObserver)
-        viewModel.isEmptyList.observe(this, emptyListObserver)
+        viewModel.movies.observe(viewLifecycleOwner, renderMovies)
+        viewModel.isViewLoading.observe(viewLifecycleOwner, isViewLoadingObserver)
+        viewModel.onMessageError.observe(viewLifecycleOwner, onMessageErrorObserver)
     }
 
 
-    private val renderMovies = Observer<List<Movie>> {
+    private val renderMovies = Observer<List<MovieItem>> {
         Log.v("TAG", "data updated $it")
-
         movieAdapter.setMovies(it)
     }
 
@@ -77,10 +75,6 @@ class MovieFragment : Fragment() {
     private val onMessageErrorObserver = Observer<Any> {
         Log.v("TAG", "onMessageError $it")
 
-    }
-
-    private val emptyListObserver = Observer<Boolean> {
-        Log.v("TAG", "emptyListObserver $it")
     }
 
 }
