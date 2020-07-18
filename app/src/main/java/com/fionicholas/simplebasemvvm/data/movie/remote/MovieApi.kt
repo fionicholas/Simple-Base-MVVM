@@ -6,11 +6,11 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object ApiService {
+object MovieApi {
 
-    private var servicesApiInterface: ServicesApiInterface? = null
+    private var movieApiInterface: MovieApiInterface? = null
 
-    fun build(): ServicesApiInterface? {
+    fun build(): MovieApiInterface? {
         val builder: Retrofit.Builder = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -19,11 +19,11 @@ object ApiService {
         httpClient.addInterceptor(interceptor())
 
         val retrofit: Retrofit = builder.client(httpClient.build()).build()
-        servicesApiInterface = retrofit.create(
-            ServicesApiInterface::class.java
+        movieApiInterface = retrofit.create(
+            MovieApiInterface::class.java
         )
 
-        return servicesApiInterface as ServicesApiInterface
+        return movieApiInterface as MovieApiInterface
     }
 
     private fun interceptor(): HttpLoggingInterceptor {

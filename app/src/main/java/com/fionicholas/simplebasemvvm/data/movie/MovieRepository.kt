@@ -2,7 +2,7 @@ package com.fionicholas.simplebasemvvm.data.movie
 
 import android.util.Log
 import com.fionicholas.simplebasemvvm.BuildConfig.API_KEY
-import com.fionicholas.simplebasemvvm.data.movie.remote.ApiService
+import com.fionicholas.simplebasemvvm.data.movie.remote.MovieApi
 import com.fionicholas.simplebasemvvm.data.movie.remote.response.MovieResponse
 import com.fionicholas.simplebasemvvm.utils.OperationCallback
 import retrofit2.Call
@@ -16,7 +16,7 @@ class MovieRepository :
 
     override fun retrieveMovie(callback: OperationCallback) {
 
-        call = ApiService.build()
+        call = MovieApi.build()
             ?.movies(API_KEY, "en-US", "1")
         call?.enqueue(object : Callback<MovieResponse> {
             override fun onFailure(call: Call<MovieResponse>, t: Throwable) {

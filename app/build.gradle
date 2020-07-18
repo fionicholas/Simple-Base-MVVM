@@ -27,7 +27,7 @@ android {
     buildTypes.each {
         it.buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
         it.buildConfigField 'String', 'URL_POSTER', '"https://image.tmdb.org/t/p/w342"'
-        it.buildConfigField 'String', 'API_KEY', '"1b5c4f231f6dfe2b546cc12df8af1949"'
+        it.buildConfigField 'String', 'API_KEY', '"PASTE YOUR API KEY HERE"'
     }
 
 
