@@ -29,7 +29,7 @@ android {
     buildTypes.each {
         it.buildConfigField 'String', 'BASE_URL', '"https://api.themoviedb.org/3/"'
         it.buildConfigField 'String', 'URL_POSTER', '"https://image.tmdb.org/t/p/w342"'
-        it.buildConfigField 'String', 'API_KEY', '"1b5c4f231f6dfe2b546cc12df8af1949"'
+        it.buildConfigField 'String', 'API_KEY', '"PASTE YOUR API KEY HERE"'
     }
 
 
@@ -80,10 +80,6 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxjava:2.2.16"
 
     //dependency injection
-    implementation 'org.koin:koin-android:2.1.5'
-    implementation 'org.koin:koin-android-viewmodel:2.0.1'
-
-    // Hilt dependencies
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
     implementation 'androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha01'

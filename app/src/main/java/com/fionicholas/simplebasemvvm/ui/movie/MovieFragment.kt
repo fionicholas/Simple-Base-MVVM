@@ -28,7 +28,7 @@ class MovieFragment : Fragment() {
 
     private val movieAdapter: MovieAdapter by lazy {
         MovieAdapter {
-
+            // handle listener to detail movie
         }
     }
 
@@ -65,7 +65,6 @@ class MovieFragment : Fragment() {
 
     private val renderMovies = Observer<List<Movie>> {
         Log.v("TAG", "data updated $it")
-
         movieAdapter.setMovies(it)
     }
 

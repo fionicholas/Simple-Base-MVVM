@@ -1,7 +1,6 @@
 package com.fionicholas.simplebasemvvm.utils
 
 import com.fionicholas.simplebasemvvm.BuildConfig
-import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory

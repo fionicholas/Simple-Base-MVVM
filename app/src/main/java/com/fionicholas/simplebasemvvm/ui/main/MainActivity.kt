@@ -1,12 +1,11 @@
 package com.fionicholas.simplebasemvvm.ui.main
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.fionicholas.simplebasemvvm.R
 import com.fionicholas.simplebasemvvm.ui.movie.MovieFragment
 import com.fionicholas.simplebasemvvm.utils.replaceFragment
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_main.*
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

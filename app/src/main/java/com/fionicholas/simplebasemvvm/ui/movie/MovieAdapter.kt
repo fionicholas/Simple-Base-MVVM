@@ -16,10 +16,10 @@ class MovieAdapter(
 ) : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     private var listMovies = ArrayList<Movie>()
 
-    fun setMovies(tvshows: List<Movie>?) {
-        if (tvshows == null) return
+    fun setMovies(data: List<Movie>?) {
+        if (data == null) return
         this.listMovies.clear()
-        this.listMovies.addAll(tvshows)
+        this.listMovies.addAll(data)
         notifyDataSetChanged()
     }
 
