@@ -2,15 +2,15 @@ package com.fionicholas.simplebasemvvm.ui.movie
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import com.fionicholas.simplebasemvvm.base.BaseViewModel
 import com.fionicholas.simplebasemvvm.data.movie.MovieDataSource
-import com.fionicholas.simplebasemvvm.data.movie.remote.response.Movie
-import com.fionicholas.simplebasemvvm.utils.OperationCallback
+import com.fionicholas.simplebasemvvm.data.movie.remote.response.MovieItem
+import io.reactivex.schedulers.Schedulers
 
-class MovieViewModel (private val repository: MovieDataSource): ViewModel() {
+class MovieViewModel(private val repository: MovieDataSource): BaseViewModel() {
 
-    private val _movies = MutableLiveData<List<Movie>>().apply { value = emptyList() }
-    val movies: LiveData<List<Movie>> = _movies
+    private val _movies = MutableLiveData<List<MovieItem>>().apply { value = emptyList() }
+    val movies: LiveData<List<MovieItem>> = _movies
 
     private val _isViewLoading= MutableLiveData<Boolean>()
     val isViewLoading: LiveData<Boolean> = _isViewLoading
@@ -18,32 +18,20 @@ class MovieViewModel (private val repository: MovieDataSource): ViewModel() {
     private val _onMessageError= MutableLiveData<Any>()
     val onMessageError: LiveData<Any> = _onMessageError
 
-    private val _isEmptyList= MutableLiveData<Boolean>()
-    val isEmptyList: LiveData<Boolean> = _isEmptyList
-
-
     fun loadMovies(){
 
-        _isViewLoading.postValue(true)
-
-        repository.retrieveMovie(object: OperationCallback {
-            override fun onError(obj: Any?) {
+        subscribe(repository.getPopularMovie()
+            .subscribeOn(Schedulers.io())
+            .observeOn(Schedulers.io())
+            .doOnSubscribe { _isViewLoading.postValue(true) }
+            .doOnError {
                 _isViewLoading.postValue(false)
-                _onMessageError.postValue( obj)
-            }
-
-            override fun onSuccess(obj: Any?) {
+                _onMessageError.value = it}
+            .subscribe {
                 _isViewLoading.postValue(false)
+                _movies.postValue(it.results)
+            })
 
-                if(obj!=null && obj is List<*>){
-                    if(obj.isEmpty()){
-                        _isEmptyList.postValue(true)
-                    }else{
-                        _movies.value= obj as List<Movie>?
-                    }
-                }
-            }
-        })
     }
 
 }
