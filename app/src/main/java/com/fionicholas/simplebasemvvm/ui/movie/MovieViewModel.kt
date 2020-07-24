@@ -24,13 +24,13 @@ class MovieViewModel(private val repository: MovieDataSource): BaseViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(Schedulers.io())
             .doOnSubscribe { _isViewLoading.postValue(true) }
-            .doOnError {
-                onErrorNetwork(it)
-            }
-            .subscribe {
+            .subscribe ({
                 _isViewLoading.postValue(false)
                 _movies.postValue(it.results)
+            },{
+                onErrorNetwork(it)
             })
+        )
 
     }
 
