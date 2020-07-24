@@ -15,8 +15,8 @@ class MovieViewModel(private val repository: MovieDataSource): BaseViewModel() {
     private val _isViewLoading= MutableLiveData<Boolean>()
     val isViewLoading: LiveData<Boolean> = _isViewLoading
 
-    private val _onMessageError= MutableLiveData<Any>()
-    val onMessageError: LiveData<Any> = _onMessageError
+    private val _onMessageError= MutableLiveData<String>()
+    val onMessageError: LiveData<String> = _onMessageError
 
     fun loadMovies(){
 
@@ -25,13 +25,18 @@ class MovieViewModel(private val repository: MovieDataSource): BaseViewModel() {
             .observeOn(Schedulers.io())
             .doOnSubscribe { _isViewLoading.postValue(true) }
             .doOnError {
-                _isViewLoading.postValue(false)
-                _onMessageError.value = it}
+                onErrorNetwork(it)
+            }
             .subscribe {
                 _isViewLoading.postValue(false)
                 _movies.postValue(it.results)
             })
 
+    }
+
+     private fun onErrorNetwork(throwable: Throwable) {
+         _isViewLoading.postValue(false)
+         _onMessageError.postValue(throwable.message)
     }
 
 }

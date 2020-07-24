@@ -72,8 +72,8 @@ class MovieFragment : Fragment() {
         progress_bar.visibility = visibility
     }
 
-    private val onMessageErrorObserver = Observer<Any> {
-        Log.v("TAG", "onMessageError $it")
+    private val onMessageErrorObserver = Observer<String> {
+        Log.e("TAG", "onMessageError $it")
 
     }
 
