@@ -50,18 +50,18 @@ class MovieFragment : Fragment() {
         }
 
         viewModel.loadMovies()
-        setupViewModel()
+        setupViewModelMovies()
 
     }
 
-    private fun setupViewModel() {
-        viewModel.movies.observe(viewLifecycleOwner, renderMovies)
+    private fun setupViewModelMovies() {
+        viewModel.movies.observe(viewLifecycleOwner, loadMovies)
         viewModel.isViewLoading.observe(viewLifecycleOwner, isViewLoadingObserver)
         viewModel.onMessageError.observe(viewLifecycleOwner, onMessageErrorObserver)
     }
 
 
-    private val renderMovies = Observer<List<MovieItem>> {
+    private val loadMovies = Observer<List<MovieItem>> {
         Log.v("TAG", "data updated $it")
         movieAdapter.setMovies(it)
     }
