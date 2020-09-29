@@ -1,7 +1,7 @@
 # Simple Base Project MVVM
 Base Project MVVM with RxJava, Retrofit, Room, DI and Repository Patern
 
-## Sample Project :
+## Sample Project
 - [Football App](https://github.com/fionicholas/Football-App)
 
 ## Tech Stack
@@ -14,7 +14,7 @@ Base Project MVVM with RxJava, Retrofit, Room, DI and Repository Patern
 - Koin
 - Hilt (on branch implement-hilt-rx)
 
-## Don't Forget To :
+## Don't Forget to
 
 - Star the Repository [⭐](https://github.com/fionicholas/Simple-Base-MVVM)
 - Follow [My Github Account](https://github.com/fionicholas/)
