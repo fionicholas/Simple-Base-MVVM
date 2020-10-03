@@ -19,6 +19,9 @@ Base Project MVVM with RxJava, Retrofit, Room, DI and Repository Patern
 - Star the Repository [⭐](https://github.com/fionicholas/Simple-Base-MVVM)
 - Follow [My Github Account](https://github.com/fionicholas/)
 
+## Contributing
+If you found some mistakes or a better way, please create a pull request, or submit an issue ticket. Enjoy it :relaxed:
+
 ## License
 ```
 MIT License
